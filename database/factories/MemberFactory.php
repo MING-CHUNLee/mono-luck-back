@@ -25,10 +25,10 @@ class MemberFactory extends Factory
             'member_id'=>$this->faker->uuid(),
             'phone' =>  $this->faker->numerify('##########'),
             'card_id' => $this->faker->numerify('##########'),
-            'name' =>  $this->faker->text(10),
+            'name' =>  $this->faker->name('10'),
             'membership'=>'暢遊會員',
-            'created_at' =>$this->faker->dateTime($max = 'now', $timezone = null),
-            'updated_at' =>$this->faker->dateTime($max = 'now', $timezone = null),
+            'created_at' =>$this->faker->dateTimeBetween('-500 days', '-200 days'),
+            'updated_at' =>$this->faker->dateTimeBetween('-200 days', '-20 days'),
             ];
     }
 
