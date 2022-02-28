@@ -10,7 +10,7 @@ class Locker extends Model
     use HasFactory;
     protected $table = 'lockers';
     protected $primaryKey = 'locker_id';
-    
+    protected $fillable = array('*');
     protected static function newFactory()
     {
         return LockerFactory::new();
