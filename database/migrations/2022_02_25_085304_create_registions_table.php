@@ -2,8 +2,8 @@
 /*
  * @Author: your name
  * @Date: 2022-02-25 16:53:04
- * @LastEditTime: 2022-02-25 16:53:32
- * @LastEditors: your name
+ * @LastEditTime: 2022-03-01 14:06:56
+ * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \mono-luck-back\mono-luck-back\database\migrations\2022_02_25_085304_create_registions_table.php
  */
@@ -23,8 +23,8 @@ return new class extends Migration
     {
         Schema::create('registions', function (Blueprint $table) {
             $table->id('id');
-            $table->String('locker_id',10)->unique();
-            $table->Char('member_id',36)->unique();
+            $table->String('locker_id',10);
+            $table->Char('member_id',36);
             $table->timestamps();
         });
     }
