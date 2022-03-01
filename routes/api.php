@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MonoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/member', [MemberController::class, 'index']);
-Route::get('/member/{member_id}', [MemberController::class, 'show']);
+Route::post("add", [MonoController::class,'add']);
+Route::get("list", [MonoController::class,'list']);
+Route::put("updatetest", [MonoController::class,'updatetest']);
+Route::delete("deletetest/{member_id}", [MonoController::class,'deletetest']);
+Route::get("search/{name}", [MonoController::class,'search']);
