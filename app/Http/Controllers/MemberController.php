@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Members;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
+
 class MemberController extends Controller
 {
     /**
@@ -15,10 +17,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        
         $members = DB::table('members')->get();
-        return response(['members' => $members]);
-        
+        return response(['members' => $members],Response::HTTP_OK); 
     }
 
     /**
@@ -36,15 +36,18 @@ class MemberController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Members  $members
+     * @param  \App\Models\Member  $members
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $member_id)
     {
         $members = DB::table('members')->where('phone', $member_id)->get();
-        return response()->json($members);
+        return response($members);
     }
 
+    public function search($phone){
+        return DB::table('members')->where("phone",$phone)->get();
+    }
     /**
      * Update the specified resource in storage.
      *

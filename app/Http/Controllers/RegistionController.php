@@ -3,30 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Locker;
-use App\Models\Members;
-use App\Models\Registions;
+use App\Models\Registion;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\APP;
 use App\Http\Controllers\MemberController;
+use Illuminate\Http\Response;
 
-class RegistionsController extends Controller
+class RegistionController extends Controller
 {
     public function list(){
-        return Registions::All();
+        return DB::table('Registions')->get();
 
     }
 
-    public function search($phone){
-        return Members::where("phone",$phone)->get();
-
-    }
-
-    public function find($phone){
-        $a = DB::table("members")->where("phone",$phone)->value('member_id');
-        //$members = DB::table('members')->where('phone', $member_id)->value('member_id');
-        return $a;
-    }
 
     // public function deletetest($member_id){
     //     $locker = Members::find($member_id);
@@ -56,14 +44,14 @@ class RegistionsController extends Controller
     //     }
 
     // }
-    public function abc(Request $req){
-        return $this->find($req->phone);
-    }
+    // public function abc(Request $req){
+    //     return $this->find($req->phone);
+    // }
 
 
     public function add(Request $req)
     {
-        if(MemberControllerfindIdbyPhone($req->phone)==""){
+        if(MemberController::findIdbyPhone($req->phone)==""){
             return "no find phone";
         }
         else{
