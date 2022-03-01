@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Members extends Model
+class Member extends Model
 {
     use HasFactory;
     protected $table = 'members';

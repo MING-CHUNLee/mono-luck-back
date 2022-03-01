@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Locker;
-use App\Models\Members;
-use App\Models\Registions;
+use App\Models\Registion;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\MemberController;
+use Illuminate\Http\Response;
 
-class RegistionsController extends Controller
+class RegistionController extends Controller
 {
     public function list(){
-        return Registions::All();
+        return DB::table('Registions')->get();
 
     }
 
@@ -57,6 +57,10 @@ class RegistionsController extends Controller
     //     }
 
     // }
+    // public function abc(Request $req){
+    //     return $this->find($req->phone);
+    // }
+    
     public function find_registions(Request $req){
         $registions = Registions::where("member_id",$this->find($req->phone))->value('locker_id');
         return $registions;
@@ -65,14 +69,13 @@ class RegistionsController extends Controller
 
     public function add(Request $req)
     {
-        if($this->find($req->phone)==""){
-            //return "no find phone";
-            return response(["no find phone"],500);
+        if(MemberController::findIdbyPhone($req->phone)==""){
+            return "no find phone";
         }
         else{
         $registions = new Registions;
         $registions -> locker_id=$req->locker_id;
-        $registions -> member_id=$this->find($req->phone);
+        $registions -> member_id=MemberController::findIdbyPhone($req->phone);
         $result = $registions->save();
         if($result)
         {

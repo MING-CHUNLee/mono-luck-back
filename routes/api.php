@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegistionsController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\RegistionController;
+use App\Http\Controllers\LockerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("add", [RegistionsController::class,'add']);
-Route::get("list", [RegistionsController::class,'list']);
-Route::put("updatetest", [RegistionsController::class,'updatetest']);
-Route::delete("deletetest/{member_id}", [RegistionsController::class,'deletetest']);
-Route::get("search/{phone}", [RegistionsController::class,'search']);
-Route::post("find", [RegistionsController::class,'find']);
-Route::post("find_registions", [RegistionsController::class,'find_registions']);
+//Registion
+Route::get("Registions", [RegistionController::class,'list']);
+Route::post("Registion", [RegistionController::class,'add']);
+
+//Member
+Route::get("Members", [MemberController::class,'index']);
+Route::get("Member/{phone}", [MemberController::class,'search']);
+//Locker
+Route::get("Lockers", [LockerController::class,'index']);
+Route::get("Locker/{phone}", [LockerController::class,'findLockerbyPhone']);
+
+// Route::get("abc", [RegistionController::class,'abc']);
+// Route::put("updatetest", [RegistionController::class,'updatetest']);
+// Route::delete("deletetest/{member_id}", [RegistionController::class,'deletetest']);
