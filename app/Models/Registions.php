@@ -10,6 +10,7 @@ class Registions extends Model
     use HasFactory;
     protected $table = 'registions';
     protected $primaryKey = 'id';
+    protected $fillable = array('*');
 
     public function member()
     {
