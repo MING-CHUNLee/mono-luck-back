@@ -7,7 +7,8 @@ use App\Models\Locker;
 use App\Models\Members;
 use App\Models\Registions;
 use Illuminate\Support\Facades\DB;
-use MemberController;
+use Illuminate\Support\Facades\APP;
+use App\Http\Controllers\MemberController;
 
 class RegistionsController extends Controller
 {
@@ -62,7 +63,7 @@ class RegistionsController extends Controller
 
     public function add(Request $req)
     {
-        if($this->find($req->phone)==""){
+        if(MemberControllerfindIdbyPhone($req->phone)==""){
             return "no find phone";
         }
         else{

@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("add", [RegistionsController::class,'add']);
+Route::post("Registion", [RegistionsController::class,'add']);
 Route::get("list", [RegistionsController::class,'list']);
 Route::put("updatetest", [RegistionsController::class,'updatetest']);
 Route::delete("deletetest/{member_id}", [RegistionsController::class,'deletetest']);

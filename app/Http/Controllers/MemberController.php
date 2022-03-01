@@ -67,7 +67,7 @@ class MemberController extends Controller
     {
         //
     }
-    public function findIdbyPhone($phone){
+    static public function findIdbyPhone($phone){
         $member_id = DB::table("members")->where("phone",$phone)->value('member_id');
         return $member_id;
     }
