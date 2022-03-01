@@ -7,6 +7,7 @@ use App\Models\Locker;
 use App\Models\Members;
 use App\Models\Registions;
 use Illuminate\Support\Facades\DB;
+use MemberController;
 
 class RegistionsController extends Controller
 {
@@ -24,7 +25,6 @@ class RegistionsController extends Controller
         $a = DB::table("members")->where("phone",$phone)->value('member_id');
         //$members = DB::table('members')->where('phone', $member_id)->value('member_id');
         return $a;
-        
     }
 
     // public function deletetest($member_id){
@@ -68,7 +68,7 @@ class RegistionsController extends Controller
         else{
         $registions = new Registions;
         $registions -> locker_id=$req->locker_id;
-        $registions -> member_id=$this->find($req->phone);
+        $registions -> member_id=MemberController::findIdbyPhone($req->phone);
         $result = $registions->save();
         if($result)
         {
