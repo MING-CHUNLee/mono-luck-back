@@ -25,5 +25,5 @@ Route::get("list", [RegistionsController::class,'list']);
 Route::put("updatetest", [RegistionsController::class,'updatetest']);
 Route::delete("deletetest/{member_id}", [RegistionsController::class,'deletetest']);
 Route::get("search/{phone}", [RegistionsController::class,'search']);
-Route::get("find/{phone}", [RegistionsController::class,'find']);
-Route::get("abc", [RegistionsController::class,'abc']);
+Route::post("find", [RegistionsController::class,'find']);
+Route::post("find_registions", [RegistionsController::class,'find_registions']);

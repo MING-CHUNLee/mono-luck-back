@@ -21,9 +21,11 @@ class RegistionsController extends Controller
     }
 
     public function find($phone){
-        $a = DB::table("members")->where("phone",$phone)->value('member_id');
+        $member_id = DB::table("members")->where("phone",$phone)->value('member_id');
         //$members = DB::table('members')->where('phone', $member_id)->value('member_id');
-        return $a;
+        return $member_id;
+        //return response()->json($a);
+        
         
     }
 
@@ -55,15 +57,17 @@ class RegistionsController extends Controller
     //     }
 
     // }
-    public function abc(Request $req){
-        return $this->find($req->phone);
+    public function find_registions(Request $req){
+        $registions = Registions::where("member_id",$this->find($req->phone))->value('locker_id');
+        return $registions;
     }
 
 
     public function add(Request $req)
     {
         if($this->find($req->phone)==""){
-            return "no find phone";
+            //return "no find phone";
+            return response(["no find phone"],500);
         }
         else{
         $registions = new Registions;
