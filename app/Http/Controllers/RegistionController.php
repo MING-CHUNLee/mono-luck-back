@@ -70,25 +70,22 @@ class RegistionController extends Controller
     public function add(Request $req)
     {
         if(MemberController::findIdbyPhone($req->phone)==""){
-            return "no find phone";
+            return "no find phone.";
         }
         else{
-        $registions = new Registions;
-        $registions -> locker_id=$req->locker_id;
-        $registions -> member_id=MemberController::findIdbyPhone($req->phone);
-        $result = $registions->save();
-        if($result)
-        {
-            return ["Result"=>"success"];
+            if(count($req->locker_id)>3 || count($req->locker_id)<1){
+                return "Invalid input data.";
+            }
+            else{
+                foreach($req->locker_id as $id){
+                    $registions = new Registion;
+                    $registions -> locker_id=$id;
+                    $registions -> member_id=MemberController::findIdbyPhone($req->phone);
+                    $registions->save();
+                }
+                return "success";
+            }
         }
-        else
-        {
-            return ["Result"=>"fail"];
-        }
-
-        }
-        
-
     }
     /**
      * Display a listing of the resource.

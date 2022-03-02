@@ -30,7 +30,7 @@ Route::get("Members", [MemberController::class,'index']);
 Route::get("Member/{phone}", [MemberController::class,'search']);
 //Locker
 Route::get("Lockers", [LockerController::class,'index']);
-Route::get("Locker/{phone}", [LockerController::class,'findLockerbyPhone']);
+Route::post("Locker", [LockerController::class,'findLockerbyPhone']);
 
 // Route::get("abc", [RegistionController::class,'abc']);
 // Route::put("updatetest", [RegistionController::class,'updatetest']);
