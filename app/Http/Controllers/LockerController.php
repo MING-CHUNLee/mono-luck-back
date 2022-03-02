@@ -23,12 +23,17 @@ class LockerController extends Controller
     public function findLockerbyPhone(Request $request)
     {
         $user_id=MemberController::findIdbyPhone($request->phone);
-        if(DB::table("lockers")->where("user_id",$user_id)->exists()){
+        if($user_id!=NULL){
             $locker=DB::table("lockers")->where("user_id",$user_id)->first();
-            return response([$locker->locker_id,$locker->Num],Response::HTTP_OK);
+            if($locker!=NULL){
+                return response(['locker_id'=>$locker->locker_id,'Num'=>$locker->Num],Response::HTTP_OK);
+            }
+            else{
+                return response("You didn't get locker,yet",Response::HTTP_OK);
+            }
         }
         else{
-            return response();
+            return response("Phone not found.",Response::HTTP_OK);
         }
     }
 
