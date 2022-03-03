@@ -24,16 +24,22 @@ class LockerController extends Controller
     {
         $user_id=MemberController::findIdbyPhone($request->phone);
         if($user_id!=NULL){
-            $locker=DB::table("lockers")->where("user_id",$user_id)->first();
-            if($locker!=NULL){
-                return response(['locker_id'=>$locker->locker_id,'Num'=>$locker->Num],Response::HTTP_OK);
+                $Registion=DB::table("lockers")->where("user_id",$user_id)->get();
+            if($Registion!=NULL){
+                $locker=DB::table("lockers")->where("user_id",$user_id)->first();
+                if($locker!=NULL){
+                    return response(['locker_id'=>$locker->locker_id,'Num'=>$locker->Num],Response::HTTP_OK);
+                }
+                else{
+                    return response("you haven't got the locker yet",Response::HTTP_OK);
+                }
             }
             else{
-                return response("Haven't got the locker yet",Response::HTTP_OK);
+                return response("You have not registered yet",Response::HTTP_OK);
             }
         }
         else{
-            return response("Phone not found.",Response::HTTP_OK);
+            return response("you are not member.",Response::HTTP_OK);
         }
     }
 
