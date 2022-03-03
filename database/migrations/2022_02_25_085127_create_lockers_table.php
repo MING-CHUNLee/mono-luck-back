@@ -22,7 +22,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('lockers', function (Blueprint $table) {
-            $table->String('locker_id',10)->primary();
+            $table->String('locker_id',2)->primary();
             $table->String('Num',20);
             $table->Char('user_id',36)->unique();
             $table->timestamps();
