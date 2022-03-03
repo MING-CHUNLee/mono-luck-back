@@ -24,7 +24,7 @@ class LockerController extends Controller
     {
         $user_id=MemberController::findIdbyPhone($request->phone);
         if($user_id!=NULL){
-                $Registion=DB::table("lockers")->where("user_id",$user_id)->get();
+            $Registion=DB::table("Registions")->where("member_id",$user_id)->first();
             if($Registion!=NULL){
                 $locker=DB::table("lockers")->where("user_id",$user_id)->first();
                 if($locker!=NULL){
