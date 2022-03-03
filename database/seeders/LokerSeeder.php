@@ -17,6 +17,6 @@ class LokerSeeder extends Seeder
     public function run()
     {
         //
-        Locker::factory()->count(15)->create();
+        Locker::factory()->count(34)->create();
     }
 }
