@@ -29,7 +29,7 @@ class LockerController extends Controller
                 return response(['locker_id'=>$locker->locker_id,'Num'=>$locker->Num],Response::HTTP_OK);
             }
             else{
-                return response("You didn't get locker,yet",Response::HTTP_OK);
+                return response("Haven't got the locker yet",Response::HTTP_OK);
             }
         }
         else{
