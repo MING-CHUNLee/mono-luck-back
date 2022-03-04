@@ -10,7 +10,7 @@
 
 namespace Database\Factories;
 use App\Models\Locker;
-use App\Models\Members;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -28,7 +28,7 @@ class LockerFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Locker::class;
-    protected $user = Members::class;
+
    
    
 
@@ -38,8 +38,8 @@ class LockerFactory extends Factory
         
         return [
             //
-                'locker_id' =>$this->faker->unique()->numberBetween(0, 33),
-                'Num' => $this->faker->numerify('####################'),
+                'lockerNo' =>$this->faker->unique()->numberBetween(0, 33),
+                'lockerEncoding' => $this->faker->numerify('####################'),
                 'created_at' =>$this->faker->dateTime($max = 'now', $timezone = null),
                 'updated_at' =>$this->faker->dateTime($max = 'now', $timezone = null),
 

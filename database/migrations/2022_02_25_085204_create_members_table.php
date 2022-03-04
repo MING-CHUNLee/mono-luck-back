@@ -22,11 +22,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->uuid('member_id')->unique()->primary();
-            $table->string('phone',10)->unique();
-            $table->string('card_id',20)->unique();
-            $table->string('name',20);
-            $table->string('membership',50);
+            
+            $table->increments('id');
+            $table->string('phone',10)->nullable();
+            $table->string('cardId',20)->nullable();
+            $table->string('name',40);
+            $table->string('membership',20);
             $table->timestamps();
         });
     }

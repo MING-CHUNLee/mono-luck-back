@@ -15,7 +15,7 @@ return new class extends Migration
     {
         //
         Schema::table('lockers', function(Blueprint $table) {
-            $table->foreign('user_id')->references('member_id')->on('members');
+            $table->foreign('memberId')->references('id')->on('members');
         });
     }
 

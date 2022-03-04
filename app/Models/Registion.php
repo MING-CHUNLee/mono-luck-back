@@ -14,12 +14,9 @@ class Registion extends Model
 
     public function member()
     {
-        return $this->hasMany( 'App\Models\Members', 'member_id');
+        return $this->hasOne( 'App\Models\Member', 'memberId');
     }
     
-    public function locker()
-    {
-        return $this->hasMany( 'App\Models\Locker', 'locker_id');
-    }
+
 
 }
