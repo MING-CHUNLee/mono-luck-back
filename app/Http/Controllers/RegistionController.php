@@ -69,21 +69,27 @@ class RegistionController extends Controller
 
     public function add(Request $req)
     {
-        if(MemberController::findIdbyPhone($req->phone)==""){
-            return "no find phone.";
+        $memberId=MemberController::findIdbyPhone($req->phone);
+        if($memberId==""){
+            return response("非暢遊會員,無法登記鎖櫃!",Response::HTTP_OK);
         }
         else{
-            if(count($req->locker_id)>3 || count($req->locker_id)<1){
-                return "Invalid input data.";
+            if(DB::table("registrations")->where("memberId",$memberId)->first()==NULL){
+                return response("您已登記過鎖櫃",Response::HTTP_OK);
             }
             else{
-                foreach($req->locker_id as $id){
-                    $registions = new Registion;
-                    $registions -> locker_id=$id;
-                    $registions -> member_id=MemberController::findIdbyPhone($req->phone);
-                    $registions->save();
+                if(count($req->locker_id)>3 || count($req->locker_id)<1){
+                    return response("Invalid input data.",Response::HTTP_OK);
                 }
-                return "success";
+                else{
+                    foreach($req->locker_id as $id){
+                        $registions = new Registion;
+                        $registions -> locker_id=$id;
+                        $registions -> member_id=MemberController::findIdbyPhone($req->phone);
+                        $registions->save();
+                    }
+                    return response("success",Response::HTTP_OK);
+                }
             }
         }
     }
