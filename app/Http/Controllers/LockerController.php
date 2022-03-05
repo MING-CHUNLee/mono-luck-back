@@ -22,24 +22,25 @@ class LockerController extends Controller
 
     public function findLockerbyPhone(Request $request)
     {
-        $user_id=MemberController::findIdbyPhone($request->phone);
-        if($user_id!=NULL){
-            $Registion=DB::table("Registions")->where("member_id",$user_id)->first();
-            if($Registion!=NULL){
-                $locker=DB::table("lockers")->where("user_id",$user_id)->first();
+        $memberId=MemberController::findIdbyPhone($request->phone);
+        if($memberId!=NULL){
+            $registrations=DB::table("registrations")->where("memberId",$memberId)->first();
+            if($registrations!=NULL){
+                $locker=DB::table("lockers")->where("memberId",$memberId)->first();
                 if($locker!=NULL){
-                    return response(['locker_id'=>$locker->locker_id,'Num'=>$locker->Num],Response::HTTP_OK);
+                    $response="您抽中的鎖櫃為 - ".$locker->lockerNo." 號(".$locker->lockerEncoding.")<br>請向工作人員索取使用登記表簽名";
+                    return response($response,Response::HTTP_OK);
                 }
                 else{
-                    return response("you haven't got the locker yet",Response::HTTP_OK);
+                    return response("目前鎖櫃尚在登記中，<br>請在 12/12 AM 10 回來本系統查看中籤資訊",Response::HTTP_OK);
                 }
             }
             else{
-                return response("You have not registered yet",Response::HTTP_OK);
+                return response("您尚未登記過鎖櫃",Response::HTTP_OK);
             }
         }
         else{
-            return response("you are not member.",Response::HTTP_OK);
+            return response("非暢遊會員,無法登記鎖櫃!",Response::HTTP_OK);
         }
     }
 

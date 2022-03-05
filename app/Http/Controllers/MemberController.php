@@ -25,7 +25,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = DB::table('members')->get();
+        $members = DB::table('members')->first();
         return response(['members' => $members],Response::HTTP_OK); 
     }
 
@@ -47,7 +47,7 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $members
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $member_id)
+    public function show(Request $request, $memberId)
     {
         $members = DB::table('members')->where('phone', $member_id)->get();
         return response($members);
@@ -78,8 +78,9 @@ class MemberController extends Controller
     {
         //
     }
+
     static public function findIdbyPhone($phone){
-        $member_id = DB::table("members")->where("phone",$phone)->value('member_id');
-        return $member_id;
+        $memberId = DB::table("members")->where("phone",$phone)->value('id');
+        return $memberId;
     }
 }

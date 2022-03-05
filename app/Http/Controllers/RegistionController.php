@@ -61,7 +61,7 @@ class RegistionController extends Controller
     //     return $this->find($req->phone);
     // }
     
-    public function find_registions(Request $req){
+    public function find_registrations(Request $req){
         $registions = Registions::where("member_id",$this->find($req->phone))->value('locker_id');
         return $registions;
     }
@@ -70,26 +70,19 @@ class RegistionController extends Controller
     public function add(Request $req)
     {
         $memberId=MemberController::findIdbyPhone($req->phone);
-        if($memberId==""){
+        if($memberId==NULL){
             return response("非暢遊會員,無法登記鎖櫃!",Response::HTTP_OK);
         }
         else{
-            if(DB::table("registions")->where("member_id",$memberId)->first()!=NULL){
+            if(DB::table("registrations")->where("memberId",$memberId)->first()!=NULL){
                 return response("您已登記過鎖櫃",Response::HTTP_OK);
             }
             else{
-                if(count($req->locker_id)>3 || count($req->locker_id)<1){
-                    return response("Invalid input data.",Response::HTTP_OK);
-                }
-                else{
-                    foreach($req->locker_id as $id){
-                        $registions = new Registion;
-                        $registions -> locker_id=$id;
-                        $registions -> member_id=MemberController::findIdbyPhone($req->phone);
-                        $registions->save();
-                    }
-                    return response("success",Response::HTTP_OK);
-                }
+                $registrations = new Registion;
+                $registrations -> priority=$req -> priority;
+                $registrations -> memberId=$memberId;
+                $registrations->save();
+                return response("",Response::HTTP_OK);
             }
         }
     }
