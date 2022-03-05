@@ -74,7 +74,7 @@ class RegistionController extends Controller
             return response("非暢遊會員,無法登記鎖櫃!",Response::HTTP_OK);
         }
         else{
-            if(DB::table("registrations")->where("memberId",$memberId)->first()==NULL){
+            if(DB::table("registions")->where("member_id",$memberId)->first()!=NULL){
                 return response("您已登記過鎖櫃",Response::HTTP_OK);
             }
             else{
