@@ -10,7 +10,7 @@ class Member extends Model
 {
     use HasFactory;
     protected $table = 'members';
-    protected $primaryKey = 'member_id';
+    protected $primaryKey = 'id';
     protected $fillable = array('*');
 
     protected static function newFactory()

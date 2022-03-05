@@ -22,9 +22,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('lockers', function (Blueprint $table) {
-            $table->String('locker_id',2)->primary();
-            $table->String('Num',20);
-            $table->Char('user_id',36)->unique();
+            
+            $table->increments('id');
+            $table->string('lockerNo',2);
+            $table->string('lockerEncoding',20);
+            $table->integer('memberId')->unsigned()->nullable();
             $table->timestamps();
         });
     }

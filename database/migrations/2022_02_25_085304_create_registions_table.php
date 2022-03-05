@@ -22,10 +22,10 @@ return new class extends Migration
     
     public function up()
     {
-        Schema::create('registions', function (Blueprint $table) {
-            $table->id('id');
-            $table->String('locker_id',2);
-            $table->Char('member_id',36);
+        Schema::create('registrations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('priority',8);
+            $table->integer('memberId')->unsigned();
             $table->timestamps();
         });
     }

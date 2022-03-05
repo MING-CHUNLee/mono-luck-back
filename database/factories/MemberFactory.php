@@ -30,9 +30,9 @@ class MemberFactory extends Factory
     public function definition()
     {
         return [
-            'member_id'=>$this->faker->uuid(),
+         
             'phone' =>  $this->faker->numerify('##########'),
-            'card_id' => $this->faker->numerify('##########'),
+            'cardId' => $this->faker->numerify('##########'),
             'name' =>  $this->faker->name('10'),
             'membership'=>'暢遊會員',
             'created_at' =>$this->faker->dateTimeBetween('-500 days', '-200 days'),

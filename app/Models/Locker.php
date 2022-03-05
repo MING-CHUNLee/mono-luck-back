@@ -9,7 +9,7 @@ class Locker extends Model
 {
     use HasFactory;
     protected $table = 'lockers';
-    protected $primaryKey = 'locker_id';
+    protected $primaryKey = 'id';
     protected $fillable = array('*');
     protected static function newFactory()
     {
@@ -18,7 +18,7 @@ class Locker extends Model
 
     public function member()
     {
-        return $this->hasOne( 'App\Models\Members', 'user_id');
+        return $this->hasOne( 'App\Models\Member', 'memberId');
     }
 
     
