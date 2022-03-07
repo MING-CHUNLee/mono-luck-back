@@ -39,6 +39,10 @@ class MemberController extends Controller
     {
         //
     }
+    public function list(){
+        return Member::all();
+
+    }
 
     /**
      * Display the specified resource.
