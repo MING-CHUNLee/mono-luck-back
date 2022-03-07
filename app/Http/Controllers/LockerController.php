@@ -24,9 +24,9 @@ class LockerController extends Controller
     {
         $memberId=MemberController::findIdbyPhone($request->phone);
         if($memberId!=NULL){
-            $registrations=DB::table("registrations")->where("memberId",$memberId)->first();
+            $registrations=DB::table("REGISTRATIONs")->where("memberId",$memberId)->first();
             if($registrations!=NULL){
-                $locker=DB::table("lockers")->where("memberId",$memberId)->first();
+                $locker=DB::table("LOCKERs")->where("memberId",$memberId)->first();
                 if($locker!=NULL){
                     $response="您抽中的鎖櫃為 - ".$locker->lockerNo." 號(".$locker->lockerEncoding.")<br>請向工作人員索取使用登記表簽名";
                     return response($response,Response::HTTP_OK);

@@ -11,7 +11,9 @@ use Illuminate\Http\Response;
 class RegistionController extends Controller
 {
     public function list(){
-        return Registion::all();
+        //return Registion::all();
+        return DB::table('MEMBERs')->select('*')->get();
+        
 
     }
     
@@ -76,8 +78,9 @@ class RegistionController extends Controller
             return response("非暢遊會員,無法登記鎖櫃!",Response::HTTP_OK);
         }
         else{
-            if(DB::table("registrations")->where("memberId",$memberId)->first()!=NULL){
+            if(DB::table("REGISTRATIONs")->where("memberId",$memberId)->first()!=NULL){
                 return response("您已登記過鎖櫃",Response::HTTP_OK);
+                
             }
             else{
                 $registrations = new Registion;

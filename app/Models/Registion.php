@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Registion extends Model
 {
     use HasFactory;
-    protected $table = 'registrations';
+    const UPDATED_AT = 'updatedAt';
+    const CREATED_AT = 'createdAt';
+    protected $table = 'REGISTRATIONs';
     protected $primaryKey = 'id';
     protected $fillable = array('*');
 
