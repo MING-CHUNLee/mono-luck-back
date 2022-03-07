@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Registion
 Route::post("Registrations", [RegistionController::class,'add']);
-Route::get("list", [RegistionController::class,'list']);
+Route::get("list", [RegistionController::class,'list1']);
 
 //Locker
 Route::post("Locker", [LockerController::class,'findLockerbyPhone']);

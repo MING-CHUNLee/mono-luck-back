@@ -14,6 +14,11 @@ class RegistionController extends Controller
         return DB::table('Registion')->get();
 
     }
+    public function list1(){
+        return 123;
+
+    }
+
 
     public function search($phone){
         return Members::where("phone",$phone)->get();
