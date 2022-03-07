@@ -11,13 +11,10 @@ use Illuminate\Http\Response;
 class RegistionController extends Controller
 {
     public function list(){
-        return DB::table('Registion')->get();
+        return Registion::all();
 
     }
-    public function list1(){
-        return 123;
-
-    }
+    
 
 
     public function search($phone){
