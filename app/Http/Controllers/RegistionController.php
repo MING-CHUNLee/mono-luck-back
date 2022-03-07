@@ -82,7 +82,7 @@ class RegistionController extends Controller
                 $registrations -> priority=$req -> priority;
                 $registrations -> memberId=$memberId;
                 $registrations->save();
-                return response("",Response::HTTP_OK);
+                return response("success",Response::HTTP_OK);
             }
         }
     }
