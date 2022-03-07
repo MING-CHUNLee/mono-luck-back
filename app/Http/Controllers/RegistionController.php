@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 class RegistionController extends Controller
 {
     public function list(){
-        return DB::table('Registions')->get();
+        return DB::table('Registion')->get();
 
     }
 
