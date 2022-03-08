@@ -32,15 +32,15 @@ class LockerController extends Controller
                     return response($response,Response::HTTP_OK);
                 }
                 else{
-                    return response("目前鎖櫃尚在登記中，<br>請在 12/12 AM 10 回來本系統查看中籤資訊",Response::HTTP_OK);
+                    return response("0",Response::HTTP_OK);
                 }
             }
             else{
-                return response("您尚未登記過鎖櫃",Response::HTTP_OK);
+                return response("1",Response::HTTP_OK);
             }
         }
         else{
-            return response("非暢遊會員,無法登記鎖櫃!",Response::HTTP_OK);
+            return response("2",Response::HTTP_OK);
         }
     }
 
