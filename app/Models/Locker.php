@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Locker extends Model
 {
     use HasFactory;
+    const UPDATED_AT = 'updatedAt';
+    const CREATED_AT = 'createdAt';
     protected $table = 'lockers';
     protected $primaryKey = 'id';
     protected $fillable = array('*');

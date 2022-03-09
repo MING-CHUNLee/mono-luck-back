@@ -11,9 +11,13 @@ use Illuminate\Http\Response;
 class RegistionController extends Controller
 {
     public function list(){
-        return DB::table('Registions')->get();
+        //return Registion::all();
+        return DB::table('MEMBERs')->select('*')->get();
+        
 
     }
+    
+
 
     public function search($phone){
         return Members::where("phone",$phone)->get();
@@ -69,20 +73,39 @@ class RegistionController extends Controller
 
     public function add(Request $req)
     {
+        $str = $req -> priority;
+        $str = explode(',',$str);
+        $pattern1="/^\d\d$/";
+        $pattern2="/^\d\d,\d\d$/";
+        $pattern3="/^\d{2}\,\d{2}\,\d{2}$/";
+        $string = $req -> priority;
+        
+        
         $memberId=MemberController::findIdbyPhone($req->phone);
         if($memberId==NULL){
             return response("非暢遊會員,無法登記鎖櫃!",Response::HTTP_OK);
         }
         else{
-            if(DB::table("registrations")->where("memberId",$memberId)->first()!=NULL){
+            if(DB::table("REGISTRATIONs")->where("memberId",$memberId)->first()!=NULL){
                 return response("您已登記過鎖櫃",Response::HTTP_OK);
+                
             }
             else{
-                $registrations = new Registion;
-                $registrations -> priority=$req -> priority;
-                $registrations -> memberId=$memberId;
-                $registrations->save();
-                return response("success",Response::HTTP_OK);
+                if(preg_match($pattern1, $string) || preg_match($pattern2, $string) || preg_match($pattern3, $string)){
+                    if(count($str)>0 && count($str)<=3){
+                        $registrations = new Registion;
+                        $registrations -> priority=$req -> priority;
+                        $registrations -> memberId=$memberId;
+                        $registrations->save();
+                        return response("success",Response::HTTP_OK);
+                        }else{
+                            return "輸入錯誤";
+                        }
+                }else{
+                    return "輸入錯誤";
+                }
+                
+                
             }
         }
     }

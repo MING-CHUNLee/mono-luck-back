@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
+    const UPDATED_AT = 'updatedAt';
+    const CREATED_AT = 'createdAt';
     use HasFactory;
     protected $table = 'members';
     protected $primaryKey = 'id';

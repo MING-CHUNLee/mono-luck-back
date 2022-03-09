@@ -39,6 +39,10 @@ class MemberController extends Controller
     {
         //
     }
+    public function list(){
+        return Member::all();
+
+    }
 
     /**
      * Display the specified resource.
@@ -80,7 +84,7 @@ class MemberController extends Controller
     }
 
     static public function findIdbyPhone($phone){
-        $memberId = DB::table("members")->where("phone",$phone)->value('id');
+        $memberId = DB::table("MEMBERs")->where("phone",$phone)->value('id');
         return $memberId;
     }
 }
